@@ -84,6 +84,27 @@ async def user_update(post: user.UpdateUser):
     await User.filter(pk=post.id).update(**data)
     return success(msg="更新成功!")
 
+@router.put("/info", dependencies=[Security(check_permissions)], summary="用户基本信息修改")
+async def update_user_info(req: Request, post: user.UpdateUser):
+    """
+    修改个人信息
+    :param req:
+    :param post:
+    :return:
+    """
+    user_check = await User.get_or_none(pk=req.state.user_id)
+    if user_check.username != post.username:
+        check_username = await User.get_or_none(username=post.username)
+        if check_username:
+            return fail(msg=f"用户名{check_username.username}已存在")
+
+    # 新密码
+    if post.password:
+        post.password = en_password(post.password)
+
+    await User.filter(id=req.state.user_id).update(**post.dict(exclude_none=True))
+    return success(msg="更新成功!")
+
 
 @router.put("/set/role", summary="角色分配", dependencies=[Security(check_permissions, scopes=["user_role"])])
 async def set_role(post: user.SetRole):

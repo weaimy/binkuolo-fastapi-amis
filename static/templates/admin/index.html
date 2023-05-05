@@ -240,11 +240,14 @@
                         if (payload.code===401){
                             window.location.href="/admin";
                         }
-                        return {
-                            ...payload,
+                        payload = {
+                            data: payload.data,
                             status: payload.code === 200 ? 0 : payload.code,
                             msg: payload.message
-                        };
+                        }
+                        console.log(payload);
+
+                        return payload;
                     } else {
                         return payload;
                     }
