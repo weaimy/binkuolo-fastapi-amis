@@ -1,0 +1,40 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+    "pages": [
+      {
+        "label": "Home",
+        "url": "/",
+        "redirect": "/index"
+      },
+      {
+        "label": "",
+        "children": [
+           {
+            "label": "导航面板",
+            "url": "index",
+             "schemaApi": "get:/static/templates/admin/pages/console.json"
+           },
+          {
+            "label": "用户中心",
+            "url": "/user",
+            "rewrite": "/user/list",
+            "children": [
+              {
+                "label": "用户管理",
+                "url": "/user/list",
+                "schemaApi": "get:/static/templates/admin/pages/user.json"
+              },
+              {
+                "label": "角色管理",
+                "url": "/role/list",
+                "schemaApi": "get:/static/templates/admin/pages/role.json"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

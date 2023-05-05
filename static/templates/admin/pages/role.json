@@ -1,0 +1,185 @@
+{
+  "type": "page",
+  "title": "列表",
+  "remark": null,
+  "name": "page-demo",
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "dialog",
+      "label": "新增",
+      "primary": true,
+      "dialog": {
+        "title": "新增角色",
+        "body": {
+          "type": "form",
+          "api": "post:/api/v1/admin/role",
+          "body": [
+            {
+              "type": "input-text",
+              "name": "role_name",
+              "label": "角色名称"
+            },
+            {
+              "type": "textarea",
+              "name": "role_desc",
+              "label": "角色描述"
+            },
+            {
+              "type": "switch",
+              "name": "role_status",
+              "onText": "开启",
+              "offText": "关闭",
+              "label": "状态"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "body": [
+    {
+      "type": "crud",
+      "name": "sample",
+      "api": "/api/v1/admin/role",
+      "quickSaveItemApi": "put:/api/v1/admin/role",
+      "syncLocation": false,
+      "filter": {
+        "title": "",
+        "mode": "inline",
+        "wrapWithPanel": false,
+        "submitText": "",
+        "controls": [
+          {
+            "type": "text",
+            "name": "keywords",
+            "placeholder": "通过关键字搜索",
+            "addOn": {
+              "label": "搜索",
+              "type": "submit",
+              "className": "btn-success"
+            },
+            "clearable": true
+          }
+        ],
+        "className": "m-b-sm"
+      },
+      "columns": [
+        {
+          "name": "id",
+          "label": "ID",
+          "width": 20,
+          "sortable": true
+        },
+        {
+          "name": "role_name",
+          "label": "角色名称",
+          "sortable": true
+        },
+        {
+          "name": "create_time",
+          "type": "date",
+          "label": "创建时间"
+        },
+        {
+          "name": "role_status",
+          "label": "状态",
+          "quickEdit": {
+            "mode": "inline",
+            "type": "switch",
+            "onText": "开启",
+            "offText": "关闭",
+            "saveImmediately": true
+          }
+        },
+        {
+          "type": "operation",
+          "label": "操作",
+          "buttons": [
+            {
+              "label": "修改",
+              "type": "button",
+              "actionType": "dialog",
+              "dialog": {
+                "title": "角色修改",
+                "body": {
+                  "type": "form",
+                  "api": "put:/api/v1/admin/role",
+                  "body": [
+                    {
+                      "type": "hidden",
+                      "name": "id"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "role_name",
+                      "label": "角色名称"
+                    },
+                    {
+                      "type": "textarea",
+                      "name": "role_desc",
+                      "label": "角色描述"
+                    },
+                    {
+                      "type": "switch",
+                      "name": "role_status",
+                      "onText": "开启",
+                      "offText": "关闭",
+                      "label": "状态"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "label": "权限",
+              "type": "button",
+              "actionType": "dialog",
+              "dialog": {
+                "title": "权限修改",
+                "body": {
+                "type": "form",
+                "api": {
+                  "url": "/api/v1/admin/access",
+                  "method": "put",
+                  "data": {
+                    "&": "$$",
+                    "role_id":"${id}"
+                  },
+                  "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                },
+                "body": [
+                  {
+                    "type": "input-tree",
+                    "name": "access",
+                    "label": "选择权限",
+                    "multiple": true,
+                    "cascade": true,
+                    "source": {
+                      "url": "/api/v1/admin/access",
+                      "method": "get",
+                      "data": {
+                        "role_id":"${id}"
+                      },
+                      "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                    }
+                  }
+                ]
+              }
+              }
+            }
+          ]
+        }
+      ],
+      "affixHeader": true,
+      "columnsTogglable": "auto",
+      "placeholder": "暂无数据",
+      "tableClassName": "table-db table-striped",
+      "headerClassName": "crud-table-header",
+      "footerClassName": "crud-table-footer",
+      "toolbarClassName": "crud-table-toolbar",
+      "combineNum": 0,
+      "bodyClassName": "panel-default"
+    }
+  ]
+}
