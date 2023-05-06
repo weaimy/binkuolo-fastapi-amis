@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/4/23 11:43 AM
-@Author: binkuolo
+@Author: weaimy
 @Des: 路由聚合
 """
 from api.api import api_router

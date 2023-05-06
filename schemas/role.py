@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/5/15 11:52 PM
-@Author: binkuolo
+@Author: weaimy
 @Des: role schemas
 """
 from pydantic import BaseModel, Field
@@ -39,7 +39,7 @@ class RoleList(ResAntTable):
 
 class SetAccess(BaseModel):
     role_id: int
-    access: List[int] = Field(default=[], description="权限集合")
+    access: Optional[str]
 
 
 class CreateAccess(BaseModel):

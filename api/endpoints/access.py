@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/5/18 1:03 AM
-@Author: binkuolo
+@Author: weaimy
 @Des: 权限管理
 """
 from fastapi import APIRouter, Security
@@ -50,8 +50,8 @@ async def get_all_access(role_id: int):
     # 角色权限
     role_access = [i[0] for i in role_access]
     data = {
-        "all_access": tree_data,
-        "role_access": role_access
+        "options": tree_data,
+        "value": role_access
     }
     return success(msg="当前用户可以下发的权限", data=data)
 
@@ -70,6 +70,7 @@ async def set_role_access(post: role.SetAccess):
     if not post.access:
         await role_data.access.clear()
         return success(msg="已清空当前角色权限!")
+    post.access = post.access.split(',')
     # 获取分配的权限集合
     access = await Access.filter(id__in=post.access, is_check=True).all()
     # 添加权限
@@ -86,10 +87,11 @@ def access_tree(data, pid):
     """
     result = []
     for item in data:
+        item["label"] = str(item["title"])
+        item["value"] = str(item["key"])
         if pid == item["parent_id"]:
             temp = access_tree(data, item["key"])
             if len(temp) > 0:
-                # item["key"] = str(item["key"])
                 item["children"] = temp
             result.append(item)
     return result

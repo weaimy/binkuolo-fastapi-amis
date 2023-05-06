@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/4/27 3:40 PM
-@Author: binkuolo
+@Author: weaimy
 @Des: JWT鉴权
 """
 from datetime import timedelta, datetime

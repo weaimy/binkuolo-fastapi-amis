@@ -128,7 +128,7 @@ CREATE TABLE `user` (
   `username` varchar(20) DEFAULT NULL COMMENT '用户名',
   `user_type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '用户类型 True:超级管理员 False:普通管理员',
   `password` varchar(255) DEFAULT NULL,
-  `nickname` varchar(255) NOT NULL DEFAULT 'binkuolo' COMMENT '昵称',
+  `nickname` varchar(255) NOT NULL DEFAULT 'weaimy' COMMENT '昵称',
   `user_phone` varchar(11) DEFAULT NULL COMMENT '手机号',
   `user_email` varchar(255) DEFAULT NULL COMMENT '邮箱',
   `full_name` varchar(255) DEFAULT NULL COMMENT '姓名',
@@ -144,7 +144,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES (1, '2022-05-18 18:25:56.776176', '2022-05-19 09:51:02.845342', 'admin', 1, '$pbkdf2-sha256$29000$TYnxfk.pNYZwLgXA2DsHgA$8x2oHJzqMjATdVnHIO86DsU3xhQ7IzvIB.1H8tDyHpQ', 'binkuolo', '13345678120', NULL, NULL, 1, NULL, 0, 'string', NULL);
+INSERT INTO `user` VALUES (1, '2022-05-18 18:25:56.776176', '2022-05-19 09:51:02.845342', 'admin', 1, '$pbkdf2-sha256$29000$TYnxfk.pNYZwLgXA2DsHgA$8x2oHJzqMjATdVnHIO86DsU3xhQ7IzvIB.1H8tDyHpQ', 'weaimy', '13345678120', NULL, NULL, 1, NULL, 0, 'string', NULL);
 COMMIT;
 
 -- ----------------------------

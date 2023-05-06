@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Created on : 2022/4/22 22:02
-@Author: binkuolo
+@Author: weaimy
 @Des: fastapi事件监听
 """
 

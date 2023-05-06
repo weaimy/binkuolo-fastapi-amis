@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/4/27 5:24 PM
-@Author: binkuolo
+@Author: weaimy
 @Des: 用户管理
 """
 from core.Response import success, fail, res_antd
@@ -81,11 +81,13 @@ async def user_update(post: user.UpdateUser):
     if not post.password:
         data.pop("password")
     data.pop("id")
+    print(data)
     await User.filter(pk=post.id).update(**data)
     return success(msg="更新成功!")
 
+
 @router.put("/info", dependencies=[Security(check_permissions)], summary="用户基本信息修改")
-async def update_user_info(req: Request, post: user.UpdateUser):
+async def update_user_info(req: Request, post: user.UpdateUserInfo):
     """
     修改个人信息
     :param req:
@@ -102,7 +104,10 @@ async def update_user_info(req: Request, post: user.UpdateUser):
     if post.password:
         post.password = en_password(post.password)
 
-    await User.filter(id=req.state.user_id).update(**post.dict(exclude_none=True))
+    data = post.dict()
+    if not post.password:
+        data.pop("password")
+    await User.filter(pk=req.state.user_id).update(**data)
     return success(msg="更新成功!")
 
 
@@ -120,6 +125,7 @@ async def set_role(post: user.SetRole):
     await user_obj.role.clear()
     # 修改权限
     if post.roles:
+        post.roles = post.roles.split(',')
         roles = await Role.filter(role_status=True, id__in=post.roles).all()
         # 分配角色
         await user_obj.role.add(*roles)

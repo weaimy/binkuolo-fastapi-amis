@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/5/15 11:51 PM
-@Author: binkuolo
+@Author: weaimy
 @Des: 角色管理
 """
 from typing import List
@@ -24,8 +24,8 @@ async def all_roles_options(user_id: int = Query(None)):
         user_role = await Role.filter(user__id=user_id, role_status=True).values_list('id')
         user_roles = [i[0] for i in user_role]
     data = {
-        "all_role": roles,
-        "user_roles": user_roles
+        "options": roles,
+        "value": user_roles
     }
     return success(msg="所有角色下拉选项专用", data=data)
 

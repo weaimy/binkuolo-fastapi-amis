@@ -16,9 +16,10 @@
           "api": "post:/api/v1/admin/user",
           "body": [
             {
-              "type": "input-text",
+              "type": "input-image",
               "name": "header_img",
-              "label": "头像"
+              "label": "头像上传",
+              "receiver": "post:/api/v1/admin/upload"
             },
             {
               "type": "input-text",
@@ -209,7 +210,7 @@
                       "type": "input-image",
                       "name": "header_img",
                       "label": "头像上传",
-                      "receiver": "put:/api/v1/admin/user/file/upload"
+                      "receiver": "post:/api/v1/admin/upload"
                     },
                     {
                       "type": "textarea",
@@ -241,12 +242,11 @@
                   "data": {
                     "&": "$$",
                     "user_id":"${id}"
-                  },
-                  "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                  }
                 },
                 "body": [
                   {
-                    "name": "role",
+                    "name": "roles",
                     "type": "checkboxes",
                     "label": "选择角色",
                     "joinValues": true,
@@ -255,8 +255,7 @@
                       "method": "get",
                       "data": {
                         "user_id":"${id}"
-                      },
-                      "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                      }
                     }
                   }
                 ]

@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/4/23 11:46 AM
-@Author: binkuolo
+@Author: weaimy
 @Des: 视图路由
 """
 from fastapi import APIRouter

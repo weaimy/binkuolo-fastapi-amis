@@ -145,8 +145,7 @@
                   "data": {
                     "&": "$$",
                     "role_id":"${id}"
-                  },
-                  "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                  }
                 },
                 "body": [
                   {
@@ -160,8 +159,7 @@
                       "method": "get",
                       "data": {
                         "role_id":"${id}"
-                      },
-                      "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                      }
                     }
                   }
                 ]

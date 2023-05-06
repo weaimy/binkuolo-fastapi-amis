@@ -4,7 +4,7 @@
 Python `3.10.5`
 
 ```
-git@github.com:weaimy/binkuolo-fastapi-amis.git
+git clone git@github.com:weaimy/binkuolo-fastapi-amis.git
 cd binkuolo-fastapi-amis
 ```
 

@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/4/24 10:15 AM
-@Author: binkuolo
+@Author: weaimy
 @Des: mysql数据库
 """
 
@@ -16,11 +16,11 @@ DB_ORM_CONFIG = {
         "base": {
             'engine': 'tortoise.backends.mysql',
             "credentials": {
-                'host': os.getenv('BASE_HOST', '127.0.0.1'),
-                'user': os.getenv('BASE_USER', 'root'),
-                'password': os.getenv('BASE_PASSWORD', 'root'),
+                'host': os.getenv('BASE_HOST', '120.48.129.210'),
+                'user': os.getenv('BASE_USER', 'demo_weaimy_com'),
+                'password': os.getenv('BASE_PASSWORD', 'Xy87cEWak22bNXxS'),
                 'port': int(os.getenv('BASE_PORT', 3306)),
-                'database': os.getenv('BASE_DB', 'base'),
+                'database': os.getenv('BASE_DB', 'demo_weaimy_com'),
             }
         },
         # "db2": {

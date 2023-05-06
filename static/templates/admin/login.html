@@ -37,7 +37,7 @@
         let amis = amisRequire('amis/embed');
 
         // 清理token
-        localStorage.removeItem("admins_token");
+        localStorage.removeItem("token");
 
         // 通过替换下面这个配置来生成不同页面
         let amisJSON = {
@@ -68,6 +68,7 @@
                                         url: "${serverUrl}/v1/admin/user/account/login",
                                         method: "post",
                                         adaptor: function (payload, response, api) {
+                                            console.log(payload);
                                             if (payload.code == 200) {
                                                 localStorage.setItem('token', payload.data.token);
                                                 payload.msg = "登陆成功"

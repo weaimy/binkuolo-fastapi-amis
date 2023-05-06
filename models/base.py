@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 """
 @Time : 2022/4/24 10:40 AM
-@Author: binkuolo
+@Author: weaimy
 @Des: 基础模型
 """
 
@@ -23,7 +23,7 @@ class User(TimestampMixin):
     username = fields.CharField(null=True, max_length=20, description="用户名")
     user_type = fields.BooleanField(default=False, description="用户类型 True:超级管理员 False:普通管理员")
     password = fields.CharField(null=True, max_length=255)
-    nickname = fields.CharField(default='binkuolo', max_length=255, description='昵称')
+    nickname = fields.CharField(default='weaimy', max_length=255, description='昵称')
     user_phone = fields.CharField(null=True, description="手机号", max_length=11)
     user_email = fields.CharField(null=True, description='邮箱', max_length=255)
     full_name = fields.CharField(null=True, description='姓名', max_length=255)
