@@ -71,31 +71,31 @@
                                             console.log(payload);
                                             if (payload.code == 200) {
                                                 localStorage.setItem('token', payload.data.token);
-                                                payload.msg = "登陆成功"
+                                                payload.msg = "登陆成功";
+                                                window.location.href="/admin/index";
                                             }
                                             return payload;
                                         },
                                     },
-                                    "redirect": "/admin/index",
-                                    "body": [
+                                    body: [
                                         {
-                                            "type": "html",
-                                            "html": "<h1 style='text-align:center'>管理后台</h1>",
+                                            type: "html",
+                                            html: "<h1 style='text-align:center'>管理后台</h1>",
                                         },
                                         {
-                                            "type": "input-text",
-                                            "name": "username",
-                                            "label": "用户名",
-                                            "required": true
+                                            type: "input-text",
+                                            name: "username",
+                                            label: "用户名",
+                                            required: true
                                         },
                                         {
-                                            "type": "input-password",
-                                            "name": "password",
-                                            "label": "密码"
+                                            type: "input-password",
+                                            name: "password",
+                                            label: "密码"
                                         },
                                     ],
-                                    "submitText": "立即登录",
-                                    "actionType": "submit"
+                                    submitText: "立即登录",
+                                    actionType: "submit"
                                 }
                             ]
                         }
