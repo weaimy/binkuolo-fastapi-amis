@@ -65,7 +65,7 @@
                                     "mode": "horizontal",
                                     "labelAlign": "left",
                                     "api": {
-                                        url: "${serverUrl}/v1/admin/user/account/login",
+                                        url: "/api/v1/admin/user/account/login",
                                         method: "post",
                                         adaptor: function (payload, response, api) {
                                             console.log(payload);
@@ -107,12 +107,7 @@
         let amisScoped = amis.embed(
             '#root',
             amisJSON,
-            {
-                data: {
-                    serverUrl: 'https://demo.weaimy.com/api'
-                },
-
-            },
+            {},
             {
                 theme: 'antd'
             }

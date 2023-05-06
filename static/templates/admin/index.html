@@ -223,9 +223,6 @@
                 // 另外在 amis 配置项中的 api 也可以配置适配器，针对某个特定接口单独处理。
                 requestAdaptor(api) {
                     api.headers['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-                    if (api.url.indexOf('/api/') > -1) {
-                        api.url = 'https://demo.weaimy.com' + api.url
-                    }
                     if (api.url.indexOf('page=') > -1) {
                         api.url = api.url.replace("page=", "current=")
                     }
