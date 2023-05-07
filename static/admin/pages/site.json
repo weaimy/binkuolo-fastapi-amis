@@ -4,11 +4,16 @@
   "data": {
     "pages": [
       {
-        "label": "后台菜单",
+        "label": "Home",
+        "url": "/",
+        "redirect": "/index"
+      },
+      {
+        "label": "系统管理",
         "children": [
            {
             "label": "导航面板",
-            "url": "index",
+            "url": "/index",
              "schemaApi": "get:/admin/pages/console.json"
            },
           {
@@ -28,6 +33,16 @@
               }
             ]
           }
+        ]
+      },
+      {
+        "label": "网站管理",
+        "children": [
+           {
+            "label": "栏目管理",
+            "url": "/category",
+             "schemaApi": "get:/admin/pages/category.json"
+           }
         ]
       }
     ]

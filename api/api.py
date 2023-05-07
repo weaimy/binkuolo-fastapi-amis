@@ -6,7 +6,7 @@
 """
 from fastapi import APIRouter
 from api.endpoints.test import test_oath2
-from api.endpoints import user, role, access, websocket, upload
+from api.endpoints import user, role, access, websocket, upload, category
 
 api_router = APIRouter(prefix="/api/v1")
 api_router.post("/test/oath2", tags=["测试oath2授权"])(test_oath2)
@@ -15,4 +15,5 @@ api_router.include_router(role.router, prefix='/admin', tags=["角色管理"])
 api_router.include_router(access.router, prefix='/admin', tags=["权限管理"])
 api_router.include_router(upload.router, prefix='/admin', tags=["文件管理"])
 api_router.include_router(websocket.router, prefix='/ws', tags=["WebSocket"])
+api_router.include_router(category.router, prefix='/admin', tags=["栏目管理"])
 

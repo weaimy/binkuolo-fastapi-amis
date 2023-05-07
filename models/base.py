@@ -4,6 +4,7 @@
 @Author: weaimy
 @Des: 基础模型
 """
+from enum import IntEnum
 
 from tortoise import fields
 from tortoise.models import Model
@@ -77,3 +78,25 @@ class AccessLog(TimestampMixin):
     class Meta:
         table_description = "用户操作记录表"
         table = "access_log"
+
+
+class CategoryType(IntEnum):
+    news = 1
+    product = 2
+    job = 3
+    page = 4
+    link = 5
+
+
+class Category(TimestampMixin):
+    title = fields.CharField(null=True, max_length=255, description="网站名称")
+    parent_id = fields.IntField(default=0, description='父id')
+    type = fields.IntEnumField(CategoryType, default=CategoryType.news, description="栏目类型")
+    seo_key = fields.CharField(null=True, max_length=255, description='关键词')
+    seo_desc = fields.CharField(null=True, max_length=255, description='描述')
+    status = fields.BooleanField(default=True, description="状态")
+    sort = fields.IntField(default=0, description="排序")
+
+    class Meta:
+        table_description = "栏目表"
+        table = "web_category"
