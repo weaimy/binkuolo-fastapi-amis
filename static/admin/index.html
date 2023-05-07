@@ -12,17 +12,17 @@
     <link
             rel="stylesheet"
             title="default"
-            href="/static/templates/admin/amis/sdk.css"
+            href="/amis/sdk.css"
     />
     <link
             rel="stylesheet"
-            href="/static/templates/admin/amis/helper.css"
+            href="/amis/helper.css"
     />
     <link
             rel="stylesheet"
-            href="/static/templates/admin/amis/iconfont.css"
+            href="/amis/iconfont.css"
     />
-    <script src="/static/templates/admin/amis/sdk.js"></script>
+    <script src="/amis/sdk.js"></script>
     <script src="https://unpkg.com/vue@2"></script>
     <script src="https://unpkg.com/history@4.10.1
 /umd/history.js"></script>
@@ -42,6 +42,9 @@
 <div id="root" class="app-wrapper"></div>
 <script>
     (function () {
+        if(!localStorage.getItem('token')){
+            window.location.href="/admin/login.html";
+        }
         let amis = amisRequire('amis/embed');
         const match = amisRequire('path-to-regexp').match;
 
@@ -78,7 +81,7 @@
                                 },
                                 {
                                     type: "dropdown-button",
-                                    label: "${username}",
+                                    label: "${nickname}",
                                     level: "link",
                                     buttons: [
                                         {
@@ -90,12 +93,13 @@
                                                 body: {
                                                     type: "form",
                                                     api: "put:/api/v1/admin/user/info",
-                                                    redirect: "/admin",
+                                                    redirect: "/admin/login.html",
                                                     body: [
                                                         {
                                                             type: "input-text",
                                                             name: "username",
-                                                            label: "用户名"
+                                                            label: "用户名",
+                                                            disabled:true
                                                         },
                                                         {
                                                             type: "input-password",
@@ -137,7 +141,7 @@
                                         {
                                             type: "button",
                                             label: "退出登录",
-                                            onClick: "localStorage.setItem('token', '');window.location.href='/admin'"
+                                            onClick: "localStorage.setItem('token', '');window.location.href='/admin/login.html'"
                                         }
                                     ]
                                 }
@@ -149,7 +153,7 @@
             // footer: '<div class="p-2 text-center bg-light">底部区域</div>',
             // asideBefore: '<div class="p-2 text-center">菜单前面区域</div>',
             // asideAfter: '<div class="p-2 text-center">菜单后面区域</div>',
-            api: '/static/templates/admin/pages/site.json'
+            api: '/admin/pages/site.json'
         };
 
         function normalizeLink(to, location = history.location) {

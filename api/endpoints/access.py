@@ -14,24 +14,24 @@ from models.base import Role, Access
 router = APIRouter(prefix='/access')
 
 
-@router.post('', summary="权限创建", response_model=base.BaseResp)
-async def create_access(post: role.CreateAccess):
-    """
-    创建权限
-    :param post: CreateAccess
-    :return:
-    """
-    # 超级管理员可以创建权限
-    # if req.state.user_id is not 1 and req.state.user_type is not False:
-    #     return fail(msg="无法建权限!")
-
-    check = await Access.get_or_none(scopes=post.scopes)
-    if check:
-        return fail(msg=f"scopes:{post.scopes} 已经存在!")
-    result = await Access.create(**post.dict())
-    if not result:
-        return fail(msg="创建成功!")
-    return success(msg=f"权限 {result.pk} 创建成功!")
+# @router.post('', summary="权限创建", response_model=base.BaseResp)
+# async def create_access(post: role.CreateAccess):
+#     """
+#     创建权限
+#     :param post: CreateAccess
+#     :return:
+#     """
+#     # 超级管理员可以创建权限
+#     # if req.state.user_id is not 1 and req.state.user_type is not False:
+#     #     return fail(msg="无法建权限!")
+#
+#     check = await Access.get_or_none(scopes=post.scopes)
+#     if check:
+#         return fail(msg=f"scopes:{post.scopes} 已经存在!")
+#     result = await Access.create(**post.dict())
+#     if not result:
+#         return fail(msg="创建成功!")
+#     return success(msg=f"权限 {result.pk} 创建成功!")
 
 
 @router.get('', summary="权限查询", dependencies=[Security(check_permissions, scopes=["role_access"])])

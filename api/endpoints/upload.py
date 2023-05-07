@@ -37,7 +37,7 @@ async def file_upload(req: Request, file: UploadFile = File(...)):
             f.write(res)
         data = {
             'time': time.time() - start,
-            'url': f"/static/upload/{filename}"}
+            'url': f"/upload/{filename}"}
         return success(msg="文件上传成功", data=data)
     except Exception as e:
         print("文件上传失败:", e)

@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <!-- <link rel="stylesheet" href="amis/sdk.css" /> -->
-    <link rel="stylesheet" href="/static/templates/admin/amis/antd.css"/>
-    <link rel="stylesheet" href="/static/templates/admin/amis/helper.css"/>
-    <link rel="stylesheet" href="/static/templates/admin/amis/iconfont.css"/>
+    <link rel="stylesheet" href="/amis/antd.css"/>
+    <link rel="stylesheet" href="/amis/helper.css"/>
+    <link rel="stylesheet" href="/amis/iconfont.css"/>
 
     <!-- 这是默认主题所需的，如果是其他主题则不需要 -->
     <!-- 从 1.1.0 开始 sdk.css 将不支持 IE 11，如果要支持 IE11 请引用这个 css，并把前面那个删了 -->
@@ -31,7 +31,7 @@
 
 <body>
 <div id="root" class="app-wrapper"></div>
-<script src="/static/templates/admin/amis/sdk.js"></script>
+<script src="/amis/sdk.js"></script>
 <script type="text/javascript">
     (function () {
         let amis = amisRequire('amis/embed');
@@ -45,34 +45,35 @@
             // title: '用户登录',
             body: [
                 {
-                    "type": "flex",
-                    "className": "justify-items-center items-center",
-                    "style": {
+                    type: "flex",
+                    className: "justify-items-center items-center",
+                    style: {
                         "height": "100%",
                     },
-                    "items": [
+                    items: [
                         {
-                            "type": "container",
-                            "style": {
+                            type: "container",
+                            style: {
                                 "width": "450px",
                             },
-
-                            "body": [
-
+                            body: [
                                 {
-                                    "type": "form",
-                                    "title": "",
-                                    "mode": "horizontal",
-                                    "labelAlign": "left",
-                                    "api": {
+                                    type: "form",
+                                    title: "",
+                                    mode: "horizontal",
+                                    labelAlign: "left",
+                                    api: {
                                         url: "/api/v1/admin/user/account/login",
                                         method: "post",
                                         adaptor: function (payload, response, api) {
-                                            console.log(payload);
-                                            if (payload.code == 200) {
+                                            if (payload.code === 200) {
                                                 localStorage.setItem('token', payload.data.token);
-                                                payload.msg = "登陆成功";
-                                                window.location.href="/admin/index";
+                                                window.location.href="/admin/index.html";
+                                            }
+                                            payload = {
+                                                data: payload.data,
+                                                status: payload.code === 200 ? 0 : payload.code,
+                                                msg: payload.message
                                             }
                                             return payload;
                                         },
@@ -91,11 +92,21 @@
                                         {
                                             type: "input-password",
                                             name: "password",
-                                            label: "密码"
+                                            label: "密码",
+                                            minLength:6,
+                                            maxLength:20,
+                                            required: true
                                         },
                                     ],
-                                    submitText: "立即登录",
-                                    actionType: "submit"
+                                    messages: {
+                                        validateFailed: "请仔细检查表单规则，部分表单项没通过验证"
+                                    },
+                                    actions: [
+                                        {
+                                          type: "submit",
+                                          label: "立即登录"
+                                        }
+                                    ],
                                 }
                             ]
                         }

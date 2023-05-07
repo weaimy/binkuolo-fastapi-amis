@@ -81,7 +81,6 @@ async def user_update(post: user.UpdateUser):
     if not post.password:
         data.pop("password")
     data.pop("id")
-    print(data)
     await User.filter(pk=post.id).update(**data)
     return success(msg="更新成功!")
 

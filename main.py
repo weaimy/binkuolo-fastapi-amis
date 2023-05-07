@@ -52,8 +52,8 @@ async def custom_swagger_ui_html():
         openapi_url=application.openapi_url,
         title=application.title + " - Swagger UI",
         oauth2_redirect_url=application.swagger_ui_oauth2_redirect_url,
-        swagger_js_url="/static/swagger-ui-bundle.js",
-        swagger_css_url="/static/swagger-ui.css",
+        swagger_js_url="/swagger-ui-bundle.js",
+        swagger_css_url="/swagger-ui.css",
     )
 
 
@@ -69,7 +69,7 @@ async def redoc_html():
     return get_redoc_html(
         openapi_url=application.openapi_url,
         title=application.title + " - ReDoc",
-        redoc_js_url="/static/redoc.standalone.js",
+        redoc_js_url="/redoc.standalone.js",
     )
 
 
@@ -107,7 +107,7 @@ application.add_middleware(
 application.include_router(Router.router)
 
 # 静态资源目录
-application.mount('/static', StaticFiles(directory=settings.STATIC_DIR), name="static")
+application.mount('/', StaticFiles(directory=settings.STATIC_DIR), name="static")
 application.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)
 
 app = application
