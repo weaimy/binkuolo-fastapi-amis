@@ -239,15 +239,16 @@
                 // 全局 api 适配器。
                 responseAdaptor(api, payload, query, request, response) {
                     if (payload.code) {
+                        console.log(payload.code);
                         if (payload.code===401){
-                            window.location.href="/admin";
+                            window.location.href="/admin/login.html";
                         }
                         payload = {
                             data: payload.data,
                             status: payload.code === 200 ? 0 : payload.code,
                             msg: payload.message
                         }
-                        console.log(payload);
+                        // console.log(payload);
 
                         return payload;
                     } else {

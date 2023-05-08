@@ -21,14 +21,13 @@
               "label": "栏目名称"
             },
             {
-              "type": "select",
+              "type": "tree-select",
               "name": "parent_id",
+              "hideNodePathLabel": true,
               "label": "父级",
-              "value": 0,
               "source": {
-                "url": "/api/v1/admin/category",
-                "method": "get",
-                "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
+                "url": "/api/v1/admin/category/tree/select",
+                "method": "get"
               }
             },
             {
@@ -89,11 +88,7 @@
   "body": [
     {
       "type": "service",
-      "api": {
-        "url": "/api/v1/admin/category",
-        "method": "get",
-        "adaptor": "return {\n    ...payload,\n    status: payload.code === 200 ? 0 : payload.code\n}"
-      },
+      "api": "get:/api/v1/admin/category",
       "body": [
         {
           "type": "table",
@@ -131,7 +126,25 @@
                 "saveImmediately": true
               }
             }
-          ]
+          ],
+          "itemActions": [
+          {
+            "label": "编辑",
+            "type": "button",
+            "actionType": "dialog",
+            "dialog": {
+              "title": "编辑",
+              "body": "这是个简单的编辑弹框"
+            }
+          },
+          {
+            "label": "删除",
+            "type": "button",
+            "actionType": "ajax",
+            "confirmText": "确认要删除？",
+            "api": "/amis/api/mock2/form/saveForm"
+          }
+        ]
         }
       ]
     }

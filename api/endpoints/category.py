@@ -51,6 +51,24 @@ async def category_list():
     return success(msg="提取成功", data={"count": total, "rows": tree_data})
 
 
+@router.get("/tree/select",
+            summary="栏目树形选择列表",
+            dependencies=[Security(check_permissions, scopes=["category_tree_select"])]
+            )
+async def category_tree_select():
+    """
+    获取所有栏目
+    :return:
+    """
+    result = await Category.annotate().all() \
+        .values("id", "title", "parent_id", "status", "create_time", "update_time")
+    # 总数
+    total = len(result)
+    tree_data = category_tree(result, 0)
+
+    return success(msg="提取成功", data={"options": [{"label": "顶级菜单", "value": 0, "children": tree_data}]})
+
+
 def category_tree(data, pid):
     """
     遍历栏目树

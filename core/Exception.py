@@ -50,8 +50,8 @@ async def http_error_handler(_: Request, exc: HTTPException):
     :param exc:
     :return:
     """
-    if exc.status_code == 401:
-        return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
+    # if exc.status_code == 401:
+    #     return JSONResponse({"detail": exc.detail}, status_code=exc.status_code)
 
     return JSONResponse({
         "code": exc.status_code,
