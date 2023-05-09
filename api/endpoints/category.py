@@ -12,7 +12,7 @@ from core.Auth import check_permissions
 from core.Response import fail, success
 from schemas import category, base
 from models.base import Role, Category
-from schemas.category import CreateCategory
+from schemas.category import CreateCategory, UpdateCategory
 
 router = APIRouter(prefix='/category')
 
@@ -43,7 +43,7 @@ async def category_list():
     :return:
     """
     result = await Category.annotate().all() \
-        .values("id", "title", "parent_id", "status", "create_time", "update_time")
+        .values("id", "title", "parent_id", "type", "sort", "status", "create_time", "update_time")
     # 总数
     total = len(result)
     tree_data = category_tree(result, 0)
@@ -61,12 +61,27 @@ async def category_tree_select():
     :return:
     """
     result = await Category.annotate().all() \
-        .values("id", "title", "parent_id", "status", "create_time", "update_time")
+        .values("id", "title", "parent_id", "type", "sort", "status", "create_time", "update_time")
     # 总数
     total = len(result)
     tree_data = category_tree(result, 0)
 
     return success(msg="提取成功", data={"options": [{"label": "顶级菜单", "value": 0, "children": tree_data}]})
+
+
+@router.put("", summary="角色修改", dependencies=[Security(check_permissions, scopes=["category_update"])])
+async def update_role(post: UpdateCategory):
+    """
+    更新角色
+    :param post:
+    :return:
+    """
+    data = post.dict()
+    data.pop("id")
+    result = await Category.filter(pk=post.id).update(**data)
+    if not result:
+        return fail(msg="更新失败!")
+    return success(msg="更新成功!")
 
 
 def category_tree(data, pid):
