@@ -11,7 +11,7 @@ from tortoise.queryset import F
 from core.Auth import check_permissions
 from core.Response import fail, success
 from schemas import category, base
-from models.base import Role, Category
+from models.base import Role, Category, CategoryType
 from schemas.category import CreateCategory, UpdateCategory
 
 router = APIRouter(prefix='/category')
@@ -48,7 +48,7 @@ async def category_list():
     total = len(result)
     tree_data = category_tree(result, 0)
 
-    return success(msg="提取成功", data={"count": total, "rows": tree_data})
+    return success(msg="提取成功", data={"rows": tree_data})
 
 
 @router.get("/tree/select",
@@ -93,6 +93,7 @@ def category_tree(data, pid):
     """
     result = []
     for item in data:
+        item["type_name"] = CategoryType(item["type"]).name
         item["label"] = str(item["title"])
         item["value"] = str(item["id"])
         if pid == item["parent_id"]:
