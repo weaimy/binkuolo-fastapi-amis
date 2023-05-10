@@ -16,4 +16,5 @@ api_router.include_router(access.router, prefix='/admin', tags=["权限管理"])
 api_router.include_router(upload.router, prefix='/admin', tags=["文件管理"])
 api_router.include_router(websocket.router, prefix='/ws', tags=["WebSocket"])
 api_router.include_router(category.router, prefix='/admin', tags=["栏目管理"])
+api_router.include_router(category.router, prefix='/admin', tags=["页面管理"])
 
