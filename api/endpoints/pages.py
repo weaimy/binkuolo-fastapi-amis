@@ -25,10 +25,13 @@ async def page_list(req: Request):
     获取所有栏目
     :return:
     """
+    visible = True
 
     # 非超级管理员
     access = []
     if not req.state.user_type:
+        visible = False
+
         # 二级菜单权限
         two_level_access = await Access.filter(role__user__id=req.state.user_id, is_check=True).values_list("parent_id")
         two_level_access = [i[0] for i in two_level_access]
@@ -53,19 +56,19 @@ async def page_list(req: Request):
                     "label": "用户中心",
                     "url": "/user",
                     "rewrite": "/user/list",
-                    "visible": "user" in access,
+                    "visible": visible if visible else "user" in access,
                     "children": [
                         {
                             "label": "用户管理",
                             "url": "/user/list",
                             "schemaApi": "get:/admin/pages/user.json",
-                            "visible": "user_m" in access,
+                            "visible": visible if visible else "user_m" in access,
                         },
                         {
                             "label": "角色管理",
                             "url": "/role/list",
                             "schemaApi": "get:/admin/pages/role.json",
-                            "visible": "role_m" in access,
+                            "visible": visible if visible else "role_m" in access,
                         }
                     ]
                 }
