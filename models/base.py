@@ -92,11 +92,12 @@ class Category(TimestampMixin):
     title = fields.CharField(null=True, max_length=255, description="网站名称")
     parent_id = fields.IntField(default=0, description='父id')
     type = fields.IntEnumField(CategoryType, default=CategoryType.news, description="栏目类型")
+    url = fields.TextField(null=True, description='链接地址')
     seo_key = fields.CharField(null=True, max_length=255, description='关键词')
     seo_desc = fields.CharField(null=True, max_length=255, description='描述')
     status = fields.BooleanField(default=True, description="状态")
     sort = fields.IntField(default=0, description="排序")
-
+#
     class Meta:
         table_description = "栏目表"
         table = "web_category"
