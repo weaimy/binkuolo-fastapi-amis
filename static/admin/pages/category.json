@@ -59,6 +59,12 @@
             },
             {
               "type": "input-text",
+              "label": "链接地址",
+              "name": "url",
+              "hiddenOn": "this.type != 5"
+            },
+            {
+              "type": "input-text",
               "name": "seo_key",
               "label": "关键字"
             },
@@ -97,12 +103,12 @@
           "name": "id",
           "label": "ID",
           "width": 20,
-          "sortable": true
+          "sortable": false
         },
         {
           "name": "title",
           "label": "栏目名称",
-          "sortable": true
+          "sortable": false
         },
         {
           "name": "type_name",
@@ -110,10 +116,16 @@
           "sortable": false
         },
         {
+          "name": "sort",
+          "label": "排序（越大越靠前）",
+          "sortable": false
+        },
+
+        {
           "name": "create_time",
           "type": "date",
           "label": "创建时间",
-          "sortable": true
+          "sortable": false
         },
         {
           "name": "user_status",
@@ -123,7 +135,7 @@
             "type": "switch",
             "onText": "开启",
             "offText": "关闭",
-            "saveImmediately": true
+            "saveImmediately": false
           }
         },
         {
@@ -187,6 +199,12 @@
                           "value": "5"
                         }
                       ]
+                    },
+                    {
+                      "type": "input-text",
+                      "label": "链接地址",
+                      "name": "url",
+                      "hiddenOn": "this.type != 5"
                     },
                     {
                       "type": "input-text",

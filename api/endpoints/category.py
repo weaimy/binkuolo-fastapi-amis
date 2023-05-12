@@ -42,8 +42,8 @@ async def category_list():
     获取所有栏目
     :return:
     """
-    result = await Category.annotate().all() \
-        .values("id", "title", "parent_id", "type", "sort", "status", "create_time", "update_time")
+    result = await Category.annotate().order_by('-sort').all() \
+        .values("id", "title", "parent_id", "type", "url", "sort", "status", "create_time", "update_time")
     # 总数
     total = len(result)
     tree_data = category_tree(result, 0)
@@ -61,7 +61,7 @@ async def category_tree_select():
     :return:
     """
     result = await Category.annotate().all() \
-        .values("id", "title", "parent_id", "type", "sort", "status", "create_time", "update_time")
+        .values("id", "title", "parent_id", "type", "url", "sort", "status", "create_time", "update_time")
     # 总数
     total = len(result)
     tree_data = category_tree(result, 0)

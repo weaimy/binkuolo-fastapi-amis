@@ -97,7 +97,7 @@ class Category(TimestampMixin):
     seo_desc = fields.CharField(null=True, max_length=255, description='描述')
     status = fields.BooleanField(default=True, description="状态")
     sort = fields.IntField(default=0, description="排序")
-#
+
     class Meta:
         table_description = "栏目表"
         table = "web_category"

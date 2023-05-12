@@ -8,6 +8,7 @@ class CreateCategory(BaseModel):
     title: Optional[str]
     parent_id: int
     type: int
+    url: Optional[str]
     seo_key: Optional[str]
     seo_desc: Optional[str]
     sort: int
@@ -19,6 +20,7 @@ class UpdateCategory(BaseModel):
     title: Optional[str]
     parent_id: int
     type: int
+    url: Optional[str]
     seo_key: Optional[str]
     seo_desc: Optional[str]
     sort: int
@@ -30,6 +32,7 @@ class CategoryItem(BaseModel):
     title: Optional[str]
     parent_id: int
     type: int
+    url: Optional[str]
     seo_key: Optional[str]
     seo_desc: Optional[str]
     sort: int
