@@ -101,3 +101,18 @@ class Category(TimestampMixin):
     class Meta:
         table_description = "栏目表"
         table = "web_category"
+
+
+class Article(TimestampMixin):
+    title = fields.CharField(null=True, max_length=255, description="标题")
+    content = fields.TextField(null=True, description='正文内容')
+    img = fields.TextField(null=True, description='缩略图')
+    seo_key = fields.CharField(null=True, max_length=255, description='关键词')
+    seo_desc = fields.CharField(null=True, max_length=255, description='描述')
+    category_id = fields.IntField(default=0, description='栏目id')
+    tags = fields.CharField(null=True, max_length=255, description='标签')
+    source = fields.CharField(null=True, max_length=255, description="来源")
+
+    class Meta:
+        table_description = "栏目表"
+        table = "web_news"

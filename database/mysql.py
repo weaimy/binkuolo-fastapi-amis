@@ -60,6 +60,6 @@ async def register_mysql(app: FastAPI):
     register_tortoise(
         app,
         config=DB_ORM_CONFIG,
-        generate_schemas=False,
+        generate_schemas=True,
         add_exception_handlers=True,
     )

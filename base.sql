@@ -201,4 +201,27 @@ INSERT INTO `web_category` VALUES (10, '2023-05-10 07:14:55.397973', '2023-05-10
 INSERT INTO `web_category` VALUES (11, '2023-05-10 07:15:22.052337', '2023-05-10 07:15:52.300994', '居住建筑', NULL, 9, 2, NULL, NULL, 1, 0);
 INSERT INTO `web_category` VALUES (12, '2023-05-10 07:16:21.719686', '2023-05-10 07:16:21.719702', '公共建筑', NULL, 9, 2, NULL, NULL, 1, 0);
 
+-- ----------------------------
+-- Table structure for web_news
+-- ----------------------------
+DROP TABLE IF EXISTS `web_news`;
+CREATE TABLE `web_news`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_time` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) COMMENT '创建时间',
+  `update_time` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '更新时间',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '网站名称',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '正文内容',
+  `img` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '缩略图',
+  `seo_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '关键词',
+  `seo_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `category_id` int(11) NOT NULL DEFAULT 0 COMMENT '栏目id',
+  `tags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签',
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '来源',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '栏目表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of web_news
+-- ----------------------------
+
 SET FOREIGN_KEY_CHECKS = 1;
