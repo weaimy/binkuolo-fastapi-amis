@@ -1,0 +1,237 @@
+{
+  "type": "page",
+  "title": "列表",
+  "remark": null,
+  "name": "page-demo",
+  "toolbar": [
+    {
+      "type": "button",
+      "actionType": "dialog",
+      "label": "新增",
+      "primary": true,
+      "dialog": {
+        "title": "新增文章",
+        "body": {
+          "type": "form",
+          "api": "post:/api/v1/admin/article",
+          "body": [
+            {
+              "type": "input-text",
+              "name": "title",
+              "label": "标题"
+            },
+            {
+              "type": "tree-select",
+              "name": "category_id",
+              "hideNodePathLabel": true,
+              "label": "所属栏目",
+              "source": {
+                "url": "/api/v1/admin/category/tree/select",
+                "method": "get"
+              }
+            },
+            {
+              "type": "input-image",
+              "name": "img",
+              "label": "缩略图",
+              "receiver": "post:/api/v1/admin/upload"
+            },
+            {
+              "type": "input-text",
+              "name": "content",
+              "label": "正文内容"
+            },
+            {
+              "type": "input-text",
+              "name": "seo_key",
+              "label": "关键字"
+            },
+            {
+              "type": "input-text",
+              "name": "seo_desc",
+              "label": "描述"
+            },
+            {
+              "type": "input-number",
+              "name": "sort",
+              "label": "排序",
+              "value": 0
+            },
+            {
+              "type": "switch",
+              "name": "status",
+              "onText": "开启",
+              "offText": "关闭",
+              "label": "状态"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "body": [
+    {
+      "type": "crud",
+      "name": "sample",
+      "api": "/api/v1/admin/article",
+      "quickSaveItemApi": "put:/api/v1/admin/role",
+      "syncLocation": false,
+      "columns": [
+        {
+          "name": "id",
+          "label": "ID",
+          "width": 20,
+          "sortable": false
+        },
+        {
+          "name": "title",
+          "label": "文章名称",
+          "sortable": false
+        },
+        {
+          "name": "type_name",
+          "label": "文章类型",
+          "sortable": false
+        },
+        {
+          "name": "sort",
+          "label": "排序（越大越靠前）",
+          "sortable": false
+        },
+
+        {
+          "name": "create_time",
+          "type": "date",
+          "label": "创建时间",
+          "sortable": false
+        },
+        {
+          "name": "user_status",
+          "label": "状态",
+          "quickEdit": {
+            "mode": "inline",
+            "type": "switch",
+            "onText": "开启",
+            "offText": "关闭",
+            "saveImmediately": false
+          }
+        },
+        {
+          "type": "operation",
+          "label": "操作",
+          "buttons": [
+            {
+              "label": "修改",
+              "type": "button",
+              "actionType": "dialog",
+              "level": "primary",
+              "dialog": {
+                "title": "文章修改",
+                "body": {
+                  "type": "form",
+                  "api": "put:/api/v1/admin/article",
+                  "body": [
+                    {
+                      "type": "hidden",
+                      "name": "id"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "title",
+                      "label": "文章名称"
+                    },
+                    {
+                      "type": "tree-select",
+                      "name": "parent_id",
+                      "hideNodePathLabel": true,
+                      "label": "父级",
+                      "source": {
+                        "url": "/api/v1/admin/article/tree/select",
+                        "method": "get"
+                      }
+                    },
+                    {
+                      "label": "文章类型",
+                      "type": "select",
+                      "name": "type",
+                      "value": 1,
+                      "options": [
+                        {
+                          "label": "新闻模型",
+                          "value": "1"
+                        },
+                        {
+                          "label": "产品模型",
+                          "value": "2"
+                        },
+                        {
+                          "label": "招聘模型",
+                          "value": "3"
+                        },
+                        {
+                          "label": "单页",
+                          "value": "4"
+                        },
+                        {
+                          "label": "链接",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "input-text",
+                      "label": "链接地址",
+                      "name": "url",
+                      "hiddenOn": "this.type != 5"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "seo_key",
+                      "label": "关键字"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "seo_desc",
+                      "label": "描述"
+                    },
+                    {
+                      "type": "input-number",
+                      "name": "sort",
+                      "label": "排序"
+                    },
+                    {
+                      "type": "switch",
+                      "name": "status",
+                      "onText": "开启",
+                      "offText": "关闭",
+                      "label": "状态"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "level": "danger",
+              "actionType": "dialog",
+              "dialog": {
+                "title": "弹框",
+                "body": "Hello World!"
+              }
+            }
+          ]
+        }
+      ],
+      "affixHeader": true,
+      "columnsTogglable": "auto",
+      "placeholder": "暂无数据",
+      "tableClassName": "table-db table-striped",
+      "headerClassName": "crud-table-header",
+      "footerClassName": "crud-table-footer",
+      "toolbarClassName": "crud-table-toolbar",
+      "combineNum": 0,
+      "bodyClassName": "panel-default"
+    }
+  ]
+}

@@ -80,10 +80,17 @@ async def page_list(req: Request):
                 {
                     "label": "栏目管理",
                     "url": "/category",
-                    "schemaApi": "get:/admin/pages/category.json"
-                }
+                    "schemaApi": "get:/admin/pages/category.json",
+                    # "visible": "category" in access,
+                },
+                {
+                    "label": "文章管理",
+                    "url": "/article",
+                    "schemaApi": "get:/admin/pages/article.json",
+                    # "visible": "article" in access,
+                },
             ],
-            "visible": "category" in access,
+            # "visible": "web" in access,
         }
     ]
 
