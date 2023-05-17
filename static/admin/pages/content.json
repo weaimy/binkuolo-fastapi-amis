@@ -1,0 +1,20 @@
+{
+  "type": "page",
+  "asideResizor": true,
+  "asideMinWidth": 150,
+  "asideMaxWidth": 400,
+  "initApi": "get:/api/v1/admin/content/initData?id=${id}",
+  "aside": [
+    {
+      "type": "nav",
+      "stacked": true,
+      "source": "get:/api/v1/admin/content/nav"
+    }
+  ],
+  "body": [
+    {
+      "type": "tpl",
+      "tpl": "这是内容区${id}"
+    }
+  ]
+}

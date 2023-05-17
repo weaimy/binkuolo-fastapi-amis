@@ -11,11 +11,18 @@
       "primary": true,
       "dialog": {
         "title": "新增文章",
+        "size": "lg",
         "body": {
           "type": "form",
           "api": "post:/api/v1/admin/article",
           "body": [
             {
+              "type": "tabs",
+                  "tabs": [
+                    {
+                      "title": "基本信息",
+                      "body": [
+                         {
               "type": "input-text",
               "name": "title",
               "label": "标题"
@@ -35,12 +42,23 @@
               "name": "img",
               "label": "缩略图",
               "receiver": "post:/api/v1/admin/upload"
+            }
+                      ]
+                    },
+                    {
+                      "title": "正文内容",
+                      "body": [
+                        {
+                          "type": "input-rich-text",
+                          "name": "content",
+                          "label": "正文内容"
+                        }
+                      ]
+                    }
+                  ]
             },
-            {
-              "type": "input-text",
-              "name": "content",
-              "label": "正文内容"
-            },
+
+
             {
               "type": "input-text",
               "name": "seo_key",
