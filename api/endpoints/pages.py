@@ -85,9 +85,30 @@ async def page_list(req: Request):
                 },
                 {
                     "label": "内容管理",
-                    "url": "/content",
-                    "schemaApi": "get:/admin/pages/content.json",
-                    # "visible": "article" in access,
+                    "url": "/article",
+                    "rewrite": "/article/list",
+                    "children": [
+                        {
+                            "label": "文章管理",
+                            "url": "/article/list",
+                            "schemaApi": "get:/admin/pages/article.json",
+                        },
+                        {
+                            "label": "产品管理",
+                            "url": "/product/list",
+                            "schemaApi": "get:/admin/pages/product.json",
+                        },
+                        {
+                            "label": "招聘管理",
+                            "url": "/job/list",
+                            "schemaApi": "get:/admin/pages/job.json",
+                        },
+                        {
+                            "label": "单页管理",
+                            "url": "/page/list",
+                            "schemaApi": "get:/admin/pages/page.json",
+                        }
+                    ]
                 },
             ],
             # "visible": "web" in access,

@@ -1,20 +1,47 @@
 {
   "type": "page",
-  "asideResizor": true,
-  "asideMinWidth": 150,
-  "asideMaxWidth": 400,
-  "initApi": "get:/api/v1/admin/content/initData?id=${id}",
-  "aside": [
-    {
+  "title": "地址栏变化自动更新",
+  "asideSticky": false,
+  "aside": {
+
+    "type": "wrapper",
+    "size": "xs",
+    "className": "",
+    "body": {
       "type": "nav",
       "stacked": true,
-      "source": "get:/api/v1/admin/content/nav"
+      "links": [
+        {
+          "label": "页面1",
+          "to": "?id=1"
+        },
+        {
+          "label": "页面2",
+          "children": [
+            {
+              "label": "页面2",
+              "to": "?id=2"
+            },
+            {
+              "label": "页面2-2",
+              "to": "?id=2-2"
+            },
+            {
+              "label": "页面2-3（disabled）",
+              "disabled": true,
+              "to": "?id=2-3"
+            }
+          ]
+        },
+        {
+          "label": "页面3",
+          "to": "?id=3"
+        }
+      ]
     }
-  ],
-  "body": [
-    {
-      "type": "tpl",
-      "tpl": "这是内容区${id}"
-    }
-  ]
+  },
+  "body": {
+    "type": "tpl",
+    "tpl": "${id}"
+  }
 }

@@ -10,11 +10,11 @@
       "label": "新增",
       "primary": true,
       "dialog": {
-        "title": "新增文章",
+        "title": "新增职位",
         "size": "lg",
         "body": {
           "type": "form",
-          "api": "post:/api/v1/admin/article",
+          "api": "post:/api/v1/admin/job",
           "body": [
             {
               "type": "tabs",
@@ -25,8 +25,9 @@
                     {
                       "type": "input-text",
                       "name": "title",
-                      "label": "标题"
+                      "label": "职位名称"
                     },
+
                     {
                       "type": "tree-select",
                       "name": "category_id",
@@ -38,30 +39,39 @@
                       }
                     },
                     {
+                      "type": "input-text",
+                      "name": "work_address",
+                      "label": "工作地点"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "work_nature",
+                      "label": "工作性质"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "work_education",
+                      "label": "学历要求"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "work_money",
+                      "label": "薪资待遇"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "work_age",
+                      "label": "工作年限"
+                    },
+                    {
+                      "type": "input-text",
+                      "name": "work_num",
+                      "label": "招聘人数"
+                    },
+                    {
                       "type": "input-rich-text",
                       "name": "content",
-                      "label": "正文内容"
-                    },
-                    {
-                      "type": "input-image",
-                      "name": "img",
-                      "label": "缩略图",
-                      "receiver": "post:/api/v1/admin/upload"
-                    }
-                  ]
-                },
-                {
-                  "title": "其它设置",
-                  "body": [
-                    {
-                      "type": "input-text",
-                      "name": "seo_key",
-                      "label": "关键字"
-                    },
-                    {
-                      "type": "input-text",
-                      "name": "seo_desc",
-                      "label": "描述"
+                      "label": "工作内容"
                     },
                     {
                       "type": "switch",
@@ -83,7 +93,7 @@
     {
       "type": "crud",
       "name": "sample",
-      "api": "/api/v1/admin/article",
+      "api": "/api/v1/admin/job",
       "quickSaveItemApi": "put:/api/v1/admin/role",
       "syncLocation": false,
       "columns": [
@@ -95,7 +105,7 @@
         },
         {
           "name": "title",
-          "label": "文章名称",
+          "label": "职位名称",
           "sortable": false
         },
         {
@@ -130,11 +140,11 @@
               "actionType": "dialog",
               "level": "primary",
               "dialog": {
-                "title": "文章修改",
+                "title": "职位修改",
                 "size": "lg",
                 "body": {
                   "type": "form",
-                  "api": "put:/api/v1/admin/article",
+                  "api": "put:/api/v1/admin/job",
                   "body": [
                     {
                       "type": "hidden",

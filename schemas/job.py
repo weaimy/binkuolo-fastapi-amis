@@ -10,31 +10,33 @@ from schemas.base import ResAntTable
 from datetime import datetime
 
 
-class BaseArticle(BaseModel):
+class BaseJob(BaseModel):
     title: str
     content: str
-    img: Optional[str]
-    seo_key: Optional[str]
-    seo_desc: Optional[str]
+    work_address: Optional[str]
+    work_nature: Optional[str]
+    work_education: Optional[str]
+    work_money: Optional[str]
+    work_age: Optional[str]
+    work_num: Optional[str]
     category_id: int
-    tags: Optional[str]
-    source: Optional[str]
+    status: int
 
 
-class CreateArticle(BaseArticle):
+class CreateJob(BaseJob):
     pass
 
 
-class UpdateArticle(BaseArticle):
+class UpdateJob(BaseJob):
     id: int
 
 
-class ArticleItem(BaseArticle):
+class JobItem(BaseJob):
     id: int
     key: int
     create_time: datetime
     update_time: datetime
 
 
-class ArticleList(ResAntTable):
-    data: List[ArticleItem]
+class JobList(ResAntTable):
+    data: List[JobItem]

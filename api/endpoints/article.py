@@ -4,8 +4,10 @@
 @Author: weaimy
 @Des: 文章管理
 """
+from tortoise.query_utils import Prefetch
+
 from core.Response import success, fail, res_antd
-from models.base import Article
+from models.base import Article, Category
 from schemas import article
 from core.Auth import create_access_token, check_permissions
 from fastapi import Request, Query, APIRouter, Security
@@ -74,7 +76,7 @@ async def article_update(post: article.UpdateArticle):
 
 @router.get("",
             summary="文章列表",
-            response_model=article.ArticleList,
+            # response_model=article.ArticleList,
             dependencies=[Security(check_permissions, scopes=["article_query"])]
             )
 async def article_list(
@@ -95,11 +97,32 @@ async def article_list(
         query.setdefault('create_time__range', create_time)
 
     article_data = Article.annotate(key=F("id")).filter(**query).all()
+
+    res = await Article.annotate(key=F("id")).filter(**query).order_by('-create_time').all().prefetch_related(
+        Prefetch("category", queryset=Category.all())
+    )
+    data = res[pageSize * (current - 1):pageSize]
+    # print(len(res))
+    # print(type(data))
+    data_list = []
+    for item in data:
+        article_item = {
+            "id": item.id,
+            "title": item.title,
+            "img": item.img,
+            "category_id": item.category_id,
+            "category_title": item.category.title,
+            "seo_key": item.seo_key,
+            "seo_desc": item.seo_desc,
+            "update_time": item.update_time,
+            "create_time": item.create_time,
+            "content": item.content,
+        }
+        data_list.append(article_item)
+
     # 总数
-    total = await article_data.count()
+    total = len(data_list)
     # 查询
-    data = await article_data.limit(pageSize).offset(pageSize * (current - 1)).order_by("-create_time") \
-        .values(
-        "key", "id", "title", "img", "content", "seo_key",
-        "seo_desc", "create_time", "update_time")
+    data = data_list[pageSize * (current - 1):pageSize]
+
     return res_antd(code=True, data=data, total=total)

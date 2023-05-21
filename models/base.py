@@ -4,7 +4,7 @@
 @Author: weaimy
 @Des: 基础模型
 """
-from enum import IntEnum
+from enum import IntEnum, Enum
 
 from tortoise import fields
 from tortoise.models import Model
@@ -97,10 +97,12 @@ class Category(TimestampMixin):
     seo_desc = fields.CharField(null=True, max_length=255, description='描述')
     status = fields.BooleanField(default=True, description="状态")
     sort = fields.IntField(default=0, description="排序")
+    # 类型提示，仅用于Code 联想字段 匹配 下方关联的related_name
+    articles: fields.ReverseRelation["Article"]
 
     class Meta:
         table_description = "栏目表"
-        table = "web_category"
+        table = "weaimy_category"
 
 
 class Article(TimestampMixin):
@@ -109,10 +111,111 @@ class Article(TimestampMixin):
     img = fields.TextField(null=True, description='缩略图')
     seo_key = fields.CharField(null=True, max_length=255, description='关键词')
     seo_desc = fields.CharField(null=True, max_length=255, description='描述')
-    category_id = fields.IntField(default=0, description='栏目id')
     tags = fields.CharField(null=True, max_length=255, description='标签')
     source = fields.CharField(null=True, max_length=255, description="来源")
+    category: fields.ForeignKeyRelation[Category] = fields.ForeignKeyField("base.Category",
+                                                                           related_name='articles',
+                                                                           description="所属栏目")
 
     class Meta:
-        table_description = "栏目表"
-        table = "web_news"
+        table_description = "文章表"
+        table = "weaimy_article"
+
+
+class Product(TimestampMixin):
+    title = fields.CharField(null=True, max_length=255, description="标题")
+    content = fields.TextField(null=True, description='正文内容')
+    img = fields.TextField(null=True, description='缩略图')
+    seo_key = fields.CharField(null=True, max_length=255, description='关键词')
+    seo_desc = fields.CharField(null=True, max_length=255, description='描述')
+    tags = fields.CharField(null=True, max_length=255, description='标签')
+    source = fields.CharField(null=True, max_length=255, description="来源")
+    category: fields.ForeignKeyRelation[Category] = fields.ForeignKeyField("base.Category",
+                                                                           related_name='products',
+                                                                           description="所属栏目")
+
+    class Meta:
+        table_description = "产品表"
+        table = "weaimy_product"
+
+
+class WorkNature(str, Enum):
+    FULL = "全职"
+    PART = "兼职"
+
+
+class WorkEducation(str, Enum):
+    UNLIMITED = "不限"
+    HIGH_SCHOOL = "高中及以上"
+    JUNIOR_COLLEGE = "大专及以上"
+    UNDERGRADUATE = "本科及以上"
+
+
+class WorkMoney(str, Enum):
+    UNLIMITED = "面议"
+    TWO_THOUSAND = "2000-3000元/月"
+    THREE_THOUSAND = "3000-5000元/月"
+    FIVE_THOUSAND = "5000-8000元/月"
+    EIGHT_THOUSAND = "8000-10000元/月"
+    TEN_THOUSAND = "10000-20000元/月"
+    TWENTY_THOUSAND = "20000-50000元/月"
+    FIFTY_THOUSAND = "50000元以上/月"
+
+
+class WorkAge(str, Enum):
+    UNLIMITED = "不限"
+    ONE_YEAR = "1年以上"
+    TWO_YEAR = "2年以上"
+    THREE_YEAR = "3年以上"
+    FOUR_YEAR = "4年以上"
+    FIVE_YEAR = "5年以上"
+
+
+class WorkNum(str, Enum):
+    ONE_NUM = "1"
+    TWO_NUM = "2"
+    THREE_NUM = "3"
+    FOUR_NUM = "4"
+    FIVE_NUM = "5"
+    SIX_NUM = "6"
+    SEVEN_NUM = "7"
+    EIGHT_NUM = "8"
+    NINE_NUM = "9"
+    TEN_NUM = "10"
+    UNLIMITED = "若干"
+
+
+class Status(IntEnum):
+    NORMAL = 1
+    HIDDEN = 0
+
+
+class Job(TimestampMixin):
+    title = fields.CharField(null=True, max_length=255, description="标题")
+    content = fields.TextField(null=True, description='工作内容')
+    work_address = fields.CharField(null=True, max_length=255, description='工作地点')
+    work_nature = fields.CharEnumField(WorkNature, default=WorkNature.FULL, description='工作性质')
+    work_education = fields.CharEnumField(WorkEducation, default=WorkEducation.UNLIMITED, description='学历要求')
+    work_money = fields.CharEnumField(WorkMoney, default=WorkMoney.UNLIMITED, description='薪资待遇')
+    work_age = fields.CharEnumField(WorkAge, default=WorkAge.UNLIMITED, description='工作年限')
+    work_num = fields.CharEnumField(WorkNum, default=WorkNum.UNLIMITED, description='招聘人数')
+    category: fields.ForeignKeyRelation[Category] = fields.ForeignKeyField("base.Category",
+                                                                           related_name='jobs',
+                                                                           description="所属栏目")
+    status = fields.IntEnumField(Status, default=Status.HIDDEN, description='状态')
+
+    class Meta:
+        table_description = "招聘表"
+        table = "weaimy_job"
+
+
+class Page(TimestampMixin):
+    content = fields.TextField(null=True, description='正文内容')
+    pic_list = fields.TextField(null=True, description='组图')
+    category: fields.ForeignKeyRelation[Category] = fields.ForeignKeyField("base.Category",
+                                                                           related_name='pages',
+                                                                           description="所属栏目")
+
+    class Meta:
+        table_description = "招聘表"
+        table = "weaimy_page"

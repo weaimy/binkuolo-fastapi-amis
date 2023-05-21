@@ -32,7 +32,7 @@ async def category_list():
     total = len(result)
     tree_data = category_tree(result, 0)
 
-    return success(msg="提取成功", data={"rows": tree_data})
+    return success(msg="提取成功", data=tree_data)
 
 
 @router.get("/initData",
