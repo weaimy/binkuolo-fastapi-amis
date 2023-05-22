@@ -44,29 +44,34 @@
                       "label": "工作地点"
                     },
                     {
-                      "type": "input-text",
+                      "type": "select",
+                      "label": "工作性质",
                       "name": "work_nature",
-                      "label": "工作性质"
+                      "source": "get:/api/v1/admin/options/work_nature"
                     },
                     {
-                      "type": "input-text",
+                      "type": "select",
+                      "label": "学历要求",
                       "name": "work_education",
-                      "label": "学历要求"
+                      "source": "get:/api/v1/admin/options/work_education"
                     },
                     {
-                      "type": "input-text",
+                      "type": "select",
+                      "label": "薪资待遇",
                       "name": "work_money",
-                      "label": "薪资待遇"
+                      "source": "get:/api/v1/admin/options/work_money"
                     },
                     {
-                      "type": "input-text",
+                      "type": "select",
+                      "label": "工作年限",
                       "name": "work_age",
-                      "label": "工作年限"
+                      "source": "get:/api/v1/admin/options/work_age"
                     },
                     {
-                      "type": "input-text",
+                      "type": "select",
+                      "label": "招聘人数",
                       "name": "work_num",
-                      "label": "招聘人数"
+                      "source": "get:/api/v1/admin/options/work_num"
                     },
                     {
                       "type": "input-rich-text",
