@@ -5,7 +5,7 @@
 @Des: 招聘管理
 """
 from enum import Enum
-
+from tortoise import fields
 from tortoise.query_utils import Prefetch
 
 from core.Response import success, fail, res_antd
@@ -44,9 +44,34 @@ async def info(model_name: ModelName):
 
 
 @router.get("/info/{model_name}")
-async def model_info(model_name: str):
-    print(ret_obj(model_name).items())
+async def model_info():
+    print(model_to_dict(Job))
     # options = []
     # for k, v in ret_obj(model_name).__members__.items():
     #     options.append({"label": k, "value": v.value})
     # return success(data={"options": options})
+
+
+def model_to_dict(model):
+    data = {}
+    for k, v in model._meta.fields_map.items():
+        # print(field)
+        print(k, type(v))
+        # value = getattr(model._meta, field)
+        # if isinstance(v, fields.IntField):
+        #     print(k, fields.IntField.__dict__)
+        if isinstance(v, fields.data.CharEnumFieldInstance):
+            # print(v.default.value, v.description)
+            value = v.default.value
+            options = []
+            for ik, iv in v.enum_type.__members__.items():
+                # print(ik, iv.value)
+                options.append({"label": iv.value, "value": iv.value})
+            print({"value": value, "options": options})
+        # if isinstance(field, fields.ForeignKeyField):
+        #     if value:
+        #         value = value.id
+        #     else:
+        #         value = None
+        # data[k] = v
+    return data
