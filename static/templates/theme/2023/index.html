@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<link href="{{ url_for('static', path='/css/ui.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', path='/css/cms.css') }}" rel="stylesheet" type="text/css">
+<title>Weaimy Cms</title>
+<meta name="keywords" content="企业网站管理系统演示站">
+<meta name="description" content="企业网站管理系统：集列表筛选、栏目绑定域名、内容同时发布到多个栏目，栏目扩展、内容扩展、自定义模型、自定义表单等众多实用功能。">
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="bookmark" href="/favicon.ico"/>
+</head>
+<body>
+{% include 'include/header.html' %}
+    <!--Banner部分开始-->
+	<div class="ui-carousel banner">
+        <div class="ui-carousel-inner">
+            <div class="ui-carousel-item active"><a href="/" title=""><img src="{{ url_for('static', path='/img/banner/1.jpg') }}" alt=""></a></div>
+            <div class="ui-carousel-item"><a href="/" title=""><img src="{{ url_for('static', path='/img/banner/2.jpg') }}" alt=""></a></div>
+            <div class="ui-carousel-item"><a href="/" title=""><img src="{{ url_for('static', path='/img/banner/3.jpg') }}" alt=""></a></div>
+		</div>
+    </div>
+	<!--Banner部分结束-->
+
+{% include 'include/footer.html' %}
+</body>
+</html>

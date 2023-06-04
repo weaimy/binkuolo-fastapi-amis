@@ -1,0 +1,44 @@
+<div class="footer">
+    <div class="width ui-row">
+        {% for cate in cate_list %}
+        <div class="footer_item">
+            <h4>{{ cate.title }}</h4>
+            <div class="footer_menu">
+                {% if cate.children %}
+                {% for child in cate.children %}
+                <a href="/" title="{{ child.title }}" target="_blank">{{ child.title }}</a>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="footer_item footer_last">
+            <h5>7*24小时服务热线</h5>
+            <div class="footer_tel">
+                0311-88888888
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="copyright">Weaimy Cms　版权所有 © 2008-06 Inc.　<a href="https://beian.miit.gov.cn" target="_blank">冀ICP备2022017844号-1</a>　<a
+        href="/">网站地图</a></div>
+
+<div class="ui-sidebar">
+    <ul>
+        <li><a href="http://wpa.qq.com/msgrd?v=3&uin=280308692&site=qq&menu=yes" target="_blank"><i
+                class="ui-icon-qq"></i></a>
+            <div>在线客服</div>
+        </li>
+        <li><a href="/"><i class="ui-icon-edit"></i></a>
+            <div>在线留言</div>
+        </li>
+        <li class="ui-backtop" id="backtop"><a href="javascript:;"><i class="ui-icon-top"></i></a>
+            <div>返回顶部</div>
+        </li>
+    </ul>
+</div>
+
+<script src="{{ url_for('static', path='/js/jquery.js') }}"></script>
+<script src="{{ url_for('static', path='/js/ui.js') }}"></script>
+<script src="{{ url_for('static', path='/js/cms.js') }}"></script>
