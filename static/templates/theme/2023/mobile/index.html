@@ -1,0 +1,107 @@
+{% include "include/top.html" %}
+<title>Weaimy Cms</title>
+<meta name="keywords" content="企业网站管理系统演示站">
+<meta name="description" content="企业网站管理系统：集列表筛选、栏目绑定域名、内容同时发布到多个栏目，栏目扩展、内容扩展、自定义模型、自定义表单等众多实用功能。">
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="bookmark" href="/favicon.ico"/>
+</head>
+<body>
+	<div class="ui-topbar ui-topbar-blue ui-mwidth ui-fixed-top">
+		<div class="ui-topbar-logo ui-flex-fill">
+			<a href="/" title="网站首页">
+				<img style="max-height: 50px" src="{{ url_for('static', path='/img/logo_white.svg') }}" alt=""
+				></a></div>
+		<div class="ui-topbar-right">
+			<a href="javascript:;" class="ui-offside-show" data-target="#ui-offside-nav"><i class="ui-icon-lists"></i></a>
+		</div>
+	</div>
+	{% include "include/nav.html" %}
+	<!--Banner部分开始-->
+	<div class="ui-mwidth banner">
+    	<div class="ui-carousel" data-arrow="false">
+            <div class="ui-carousel-inner">
+				<div class="ui-carousel-item active"><a href="/" title=""><img src="{{ url_for('static', path='/img/banner/1.jpg') }}" alt=""></a></div>
+            <div class="ui-carousel-item"><a href="/" title=""><img src="{{ url_for('static', path='/img/banner/2.jpg') }}" alt=""></a></div>
+            <div class="ui-carousel-item"><a href="/" title=""><img src="{{ url_for('static', path='/img/banner/3.jpg') }}" alt=""></a></div>
+            </div>
+        </div>
+    </div>
+	<!--Banner部分结束-->
+
+	<!--下面代码中的3为产品栏目的ID，如有变更，请自行更换（代码特征：cateurl(3)，followid=3，get_sonid_all(3)）,以下其他栏目调用方式相同-->
+	<div class="ui-mwidth">
+		<div class="ui-box ui-p-10">
+			<div class="home-title">
+				<div class="home-title-name">产品展示<span>Product Show</span></div>
+				<div class="home-title-more"><a href="/" class="active">更多</a></div>
+			</div>
+
+			<div class="ui-piclist ui-piclist-col-2 ui-piclist-1-1 ui-piclist-100">
+				<div class="ui-piclist ui-piclist-col-4 ui-piclist-1-1 ui-piclist-100">
+					<div class="ui-piclist-item">
+						<div class="ui-piclist-image">
+							<a href="/" title="产品名称"><img src="" alt="产品名称" /></a>
+						</div>
+						<div class="ui-piclist-body">
+							<div class="ui-piclist-title ui-text-center ui-text-hide">
+								<a href="/" title="产品名称">产品名称</a>
+							</div>
+							<div class="ui-piclist-flex">
+								<div class="ui-piclist-price"><strong>￥50.00</strong></div>
+								<div class="action"><a href="/" title="产品名称" class="ui-btn ui-btn-blue">详情</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="ui-mwidth ui-mt">
+		<div class="ui-box ui-p-10">
+			<div class="home-title">
+				<div class="home-title-name">新闻资讯<span>News</span></div>
+				<div class="home-title-more"><a href="/" class="active">更多</a></div>
+			</div>
+
+			<div class="home_news">
+				<div class="home_news_item">
+					<div class="home_news_body">
+						<div class="date">
+							<h4>05</h4>
+							<p>2023-6</p>
+						</div>
+						<div class="body">
+							<h4 class="ui-text-hide"><a href="/" title="新闻标题">新闻标题</a></h4>
+							<p class="ui-text-hide">新闻描述</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui-mwidth ui-mt">
+		<div class="ui-box ui-p-10">
+			<div class="home-title">
+				<div class="home-title-name">友情链接<span>Friend Link</span></div>
+			</div>
+
+			<div class="link">
+				<a href="/" title="Weaimy Cms">Weaimy Cms</a>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="ui-mwidth copyright">
+		<div class="links"><a href="/">标签</a> | <a href="/">城市分站</a> | <a href="/">网站地图</a></div>
+		Weaimy Cms　版权所有
+		<div class="ui-pt-20"></div>
+	</div>
+
+{% include 'include/footer.html' %}
+</body>
+</html>

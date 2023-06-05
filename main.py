@@ -109,5 +109,6 @@ application.include_router(Router.router)
 # 静态资源目录
 application.mount('/', StaticFiles(directory=settings.STATIC_DIR), name="static")
 application.state.views = Jinja2Templates(directory=settings.TEMPLATE_DIR)
+application.state.mobile_views = Jinja2Templates(directory=settings.MOBILE_TEMPLATE_DIR)
 
 app = application

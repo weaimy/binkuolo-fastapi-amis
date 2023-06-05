@@ -7,7 +7,7 @@
 from fastapi import Request, APIRouter
 from fastapi.responses import HTMLResponse
 
-from core.Utils import get_tree
+from core.Utils import get_tree, isMobile
 from models.base import Category
 
 router = APIRouter()
@@ -20,9 +20,13 @@ async def home(request: Request):
     :param request:
     :return:
     """
-
+    userAgent = request.headers['User-Agent']
+    print(isMobile(request))
     result = await Category.annotate().order_by('-sort').all() \
         .values("id", "title", "parent_id", "type", "url", "sort", "status", "create_time", "update_time")
     cate_list = get_tree(result, 0)
 
-    return request.app.state.views.TemplateResponse("index.html", {"request": request, "cate_list": cate_list})
+    if isMobile(request):
+        return request.app.state.mobile_views.TemplateResponse("index.html", {"request": request, "cate_list": cate_list})
+    else:
+        return request.app.state.views.TemplateResponse("index.html", {"request": request, "cate_list": cate_list})

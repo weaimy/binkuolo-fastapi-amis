@@ -1,0 +1,41 @@
+	<div class="ui-topbar ui-topbar-gray">
+		<div class="width ui-row">
+			<div class="ui-col-6">欢迎您！</div>
+			<div class="ui-col-6 ui-text-right">
+				<div class="ui-nav">
+					<ul>
+						<li><a href="">请登录</a></li>
+						<li><a href="">免费注册</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="header width ui-row">
+		<div class="ui-col-8"><a href="/"><img style="max-width: 150px" src="{{ url_for('static', path='/img/logo.svg') }}" alt="weaimy" ></a></div>
+		<div class="ui-col-4">
+			<div class="icon"><i class="ui-icon-service"></i></div>
+			<div class="text">
+				<div class="ui-text-gray">7*24小时服务热线：</div>
+				<div class="telphone">0311-88888888</div>
+			</div>
+		</div>
+	</div>
+    <div class="nav">
+		<div class="ui-nav width">
+			<ul>
+				<li><a href="/" title="网站首页">网站首页</a></li>
+                {% for cate in cate_list %}
+                <li><a href="/" title="{{ cate.title }}">{{ cate.title }}</a>
+                    {% if cate.children %}
+                    <ul>
+                        {% for child in cate.children %}
+                        <li><a href="/" title="{{ child.title }}">{{ child.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+			</ul>
+		</div>
+	</div>

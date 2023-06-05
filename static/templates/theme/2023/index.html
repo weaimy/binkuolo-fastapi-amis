@@ -25,6 +25,90 @@
     </div>
 	<!--Banner部分结束-->
 
+    <div class="topsearch">
+		<div class="width ui-row">
+			<div class="ui-col-8">
+				<i class="ui-icon-tags ui-mr-sm"></i><a href="/">标签</a>：
+				<a href="/" title="销售" class="ui-btn ui-btn-sm">销售</a>
+			</div>
+			<div class="ui-col-4 ui-text-right">
+				<form action="{N('search')}" method="post" onSubmit="return checksearch(this)">
+					<div class="ui-form-group">
+						<div class="ui-input-group">
+							<input type="hidden" name="s" value="" />
+							<input type="hidden" name="c" value="other" />
+                            <input type="hidden" name="a" value="search" />
+							<select name="mode" class="ui-form-ip">
+								<option value="">全部</option>
+								<option value="1">新闻</option>
+								<option value="2">产品</option>
+								<option value="3">招聘</option>
+							</select>
+							<input type="text" name="keyword" class="ui-form-ip" placeholder="请输入关键字">
+                            <input type="hidden" name="token" value="">
+							<button type="submit" class="after"><div class="ui-icon-search"></div></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+    <!--下面代码中的3为产品栏目的ID，如有变更，请自行更换（代码特征：cateurl(3)，followid=3，get_sonid_all(3)）,以下其他栏目调用方式相同-->
+	<div class="width ui-mt-20 ui-mb-40">
+		<div class="home-title">
+			<div class="home-title-name">产品展示<span>Product Show</span></div>
+			<div class="home-title-more">
+                <a href="/" class="active">全部</a>
+                <a href="/" title="生活家电">生活家电</a>
+            </div>
+		</div>
+
+		<div class="ui-piclist ui-piclist-col-4 ui-piclist-1-1 ui-piclist-100">
+			<div class="ui-piclist-item">
+				<div class="ui-piclist-image">
+                    <a href="/" title="产品名称"><img src="" alt="产品名称" /></a>
+                </div>
+				<div class="ui-piclist-body">
+					<div class="ui-piclist-title ui-text-center ui-text-hide">
+                        <a href="/" title="产品名称">产品名称</a>
+                    </div>
+                    <div class="ui-piclist-flex">
+                        <div class="ui-piclist-price"><strong>￥50.00</strong></div>
+                        <div class="action"><a href="/" title="产品名称" class="ui-btn ui-btn-blue">详情</a></div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="width ui-mt-20 ui-mb-40">
+		<div class="home-title">
+			<div class="home-title-name">新闻资讯<span>News</span></div>
+			<div class="home-title-more"><a href="/" class="active">全部</a>
+                <a href="/" title="公司新闻">公司新闻</a>
+                <a href="/" title="行业资讯">行业资讯</a>
+            </div>
+		</div>
+
+		<!--news begin-->
+		<div class="home_news">
+            <div class="home_news_item">
+				<div class="home_news_body">
+					<div class="date">
+						<h4>05</h4>
+						<p>2023-6</p>
+					</div>
+					<div class="body">
+						<h4 class="ui-text-hide"><a href="/" title="新闻标题">新闻标题</a></h4>
+						<p class="ui-text-hide">新闻描述</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--news over-->
+	</div>
+
 {% include 'include/footer.html' %}
 </body>
 </html>

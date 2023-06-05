@@ -1,0 +1,35 @@
+<div class="ui-offside ui-offside-left" id="ui-offside-nav">
+    <form action="/" method="post" onSubmit="return checksearch(this)">
+        <div class="ui-form-group">
+            <div class="ui-input-group">
+                <input type="hidden" name="s" value=""/>
+                <input type="hidden" name="c" value="other"/>
+                <input type="hidden" name="a" value="search"/>
+                <input type="text" name="keyword" class="ui-form-ip radius-right-none" placeholder="请输入关键字">
+                <input type="hidden" name="token" value="">
+                <button type="submit" class="after">
+                    <div class="ui-icon-search"></div>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="ui-collapse-menu-title"><a href="/" title="网站首页">网站首页</a></div>
+    {% for cate in cate_list %}
+    <div class="ui-collapse-menu-title">
+        <a href="/" title="{{ cate.title }}">{{ cate.title }}</a>
+		{% if cate.children %}<i class="ui-icon-right"></i>{% endif %}
+    </div>
+    {% if cate.children %}
+    <div class="ui-collapse-menu-body">
+        <ul>
+            {% for child in cate.children %}
+            <li>
+                <a href="/" title="{{ child.title }}"><i class="ui-icon-square ui-font-14 ui-mr"></i>{{ child.title
+                    }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    </li>
+    {% endfor %}
+</div>

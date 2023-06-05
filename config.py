@@ -23,6 +23,7 @@ class Config(BaseSettings):
     # 静态资源目录
     STATIC_DIR: str = os.path.join(os.getcwd(), "static")
     TEMPLATE_DIR: str = os.path.join(STATIC_DIR, "templates/theme/2023")
+    MOBILE_TEMPLATE_DIR: str = os.path.join(STATIC_DIR, "templates/theme/2023/mobile")
 
     # 跨域请求
     CORS_ORIGINS: List = ["*"]
